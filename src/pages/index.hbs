@@ -1,18 +1,15 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<title>{{config.siteName}}</title>
-</head>
-<body>
+---
+pageTitle: トップページ
+pageDescription: トップページの情報になります。
+pageURL: http://example.com/
+pageOgImage: http://example.com/sample.jpg
+---
+{{> header_html}}
 <h1>{{config.siteName}}</h1>
-<hr>
-<p>Hello CodeGrid!</p>
-<hr>
+<p>Hello Assemble!</p>
 <ul>
 	{{#each config.footerLinks}}
 		<li><a href="{{url}}">{{title}}</a></li>
 	{{/each}}
 </ul>
-</body>
-</html>
+{{> footer}}

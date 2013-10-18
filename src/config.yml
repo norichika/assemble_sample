@@ -1,0 +1,9 @@
+siteName: Assemble demo
+facebookType: website
+footerLinks:
+  - title: Yahoo
+    url: http://www.yahoo.co.jp/
+  - title: Google
+    url: https://www.google.co.jp/
+  - title: Facebook
+    url: https://ja-jp.facebook.com/
