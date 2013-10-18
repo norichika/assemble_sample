@@ -4,17 +4,15 @@ module.exports = function(grunt) {
     assemble: {
       site: { // target name
         options: {
-          data: ['src/*.yml'] // data files
+          data: ['src/**/*.yml'] // data files
         },
         files: [
           {
-            src: 'src/index.hbs', // source file
-            dest: 'dist/index.html' // compile to
+            expand: true,
+            cwd: 'src/pages/',
+            src: '**/*.hbs', // source file
+            dest: 'dist/' // compile to
           },
-          {
-            src: 'src/index.hbs', // source file
-            dest: 'dist/sp/index.html' // compile to
-          }
         ]
       }
     }
