@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     },
     esteWatch: {
       options: {
-        dirs: ['src/pages/**/*.hbs','src/**/*.css','src/**/*.js'],
+        dirs: ['src/pages/**'],
         livereload: {
           enabled: false
         }
@@ -47,10 +47,10 @@ module.exports = function(grunt) {
             dest: 'dist/' // compile to
         }];
         grunt.config.set('assemble.site.files', conf_files);
-        return 'assemble'
+        return 'assemble';
       },
       css: function(filepath) {
-        return 'connect'
+        return 'connect';
       }
     }
   });
