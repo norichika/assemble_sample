@@ -3,10 +3,12 @@ pageTitle: トップページ
 pageDescription: トップページの情報になります。
 pageURL: http://example.com/
 pageOgImage: http://example.com/sample.jpg
+pageDetail: <a href="https://www.google.co.jp/">googleテスト</a>
 ---
 {{> header_html}}
 <h1>{{config.siteName}}</h1>
-<p>HelloA Assemble!</p>
+<p>AA Assemble!!</p>
+<div>{{{pageDetail}}}</div>
 <ul>
 	{{#each config.footerLinks}}
 		<li><a href="{{url}}">{{title}}</a></li>

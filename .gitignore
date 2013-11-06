@@ -2,3 +2,4 @@ node_modules/
 .ftpauth
 .DS_Store
 Thumbs.db
+.sass-cache/
