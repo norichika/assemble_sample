@@ -9,6 +9,8 @@ module.exports = function(grunt) {
   // ファイル書き出し設定
   // 除外ファイル
   var excludeDir = 'src/pages/';
+
+  // assemble copy Option
   var assembleconf_files =[{
             expand: true,
             cwd: excludeDir,
@@ -16,41 +18,35 @@ module.exports = function(grunt) {
             dest: 'dist/' // compile to
   }];
 
+  // copy
+  var copy_files =[{
+            expand: true,
+            cwd: excludeDir,
+            src: ['**/*.css'], // source file
+            dest: 'dist/' // compile to
+  }];
+
   // FTP設定
   var ftpSettings = {
     authKey: 'serverA',
-    host: '******',
+    host: '****',
     dest: '/html/assemble/',
     port: 21,
     files : ['dist/**']
   };
 
   grunt.initConfig({
-    connect: {
-      server: {
-        options: {
-          port: 9000,
-          base: 'dist'
-          // keepalive: true
-        }
-      }
-    },
     copy: {
       dist: {
-        files: [
-          {expand: true, cwd: excludeDir, src: ['**/*.css'], dest: 'dist/'}
-        ]
+        files: copy_files
       }
     },
     compass: {
       common_dev: {
         options: {
-          // config: 'compass_config.rb'
+          outputStyle: 'compressed',
           sassDir: 'src/pages/common/sass/',
-          // cssDir: 'dist/common/css/'
           cssDir: 'src/pages/common/css/'
-          // importPath: 'src/pages/common/_sass/_setting',
-          // environment: "development"
         }
       }
     },
@@ -89,23 +85,11 @@ module.exports = function(grunt) {
             src: pathget, // source file
             dest: 'dist/' // compile to
         }];
-        // var pathhtml = pathget.replace('.hbs', '.html');
-        // var ftppath = 'dist/' + pathhtml;
-        // var ftpfile = [ftppath];
-        // console.log(ftpfile);
         grunt.config.set('assemble.site.files', conf_files);
-        // grunt.config.set('ftp_push.files', ftpfile);
         return ['assemble'];
       },
       scss: function(filepath) {
-        // var pathget = filepath.replace(excludeDir, '');
-        // var pathcss = pathget.replace('.scss', '.css');
-        // pathcss = pathcss.replace('sass', 'css');
-        // var ftppath = 'dist/' + pathcss;
-        // var ftpfile = [ftppath];
-        // console.log(ftpfile);
-        // grunt.config.set('ftp_push.files', ftpfile);
-        return ['compass:common_dev', 'copy'];
+        return ['compass:common_dev'];
       },
       html: function(filepath) {
         var ftphtmlfile = [filepath];
@@ -122,6 +106,16 @@ module.exports = function(grunt) {
           grunt.config.set('ftp_push.files', ftpcssfile);
           console.log(ftpcssfile);
           return ['ftp_push'];
+        } else if(distDir === 'src') {
+          var pathget = filepath.replace(excludeDir, '');
+          var conf_files = [{
+            expand: true,
+            cwd: excludeDir,
+            src: pathget, // source file
+            dest: 'dist/' // compile to
+          }];
+          grunt.config.set('copy.dist.files', conf_files);
+          return ['copy'];
         }
       }
     }
