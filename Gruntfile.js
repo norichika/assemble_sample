@@ -12,18 +12,18 @@ module.exports = function(grunt) {
 
   // assemble copy Option
   var assembleconf_files =[{
-            expand: true,
-            cwd: excludeDir,
-            src: '**/*.hbs', // source file
-            dest: 'dist/' // compile to
+    expand: true,
+    cwd: excludeDir,
+    src: '**/*.hbs', // source file
+    dest: 'dist/' // compile to
   }];
 
   // copy
   var copy_files =[{
-            expand: true,
-            cwd: excludeDir,
-            src: ['**/*.css'], // source file
-            dest: 'dist/' // compile to
+    expand: true,
+    cwd: excludeDir,
+    src: ['**/*.css'], // source file
+    dest: 'dist/' // compile to
   }];
 
   // FTP設定
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       options: {
         dirs: ['src/pages/**', 'dist/**'],
         livereload: {
-          enabled: false,
+          enabled: true,
           port: 35729,
           extensions: ['html', 'js', 'css']
         }
@@ -123,5 +123,6 @@ module.exports = function(grunt) {
   // grunt.registerTask('default', ['assemble', 'connect']);
   grunt.registerTask('w', ['esteWatch']);
   grunt.registerTask('cmp', ['compass:common_dev']);
+  grunt.registerTask('a', ['assemble']);
   grunt.registerTask('ftp', ['ftp_push']);
 };
